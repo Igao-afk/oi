@@ -1,82 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Contagem Regressiva</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contagem para o nosso dia</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #6a0dad, #2c5364);
-      
-
-      color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      color: #4b2e2e;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
       text-align: center;
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #d63384;
     }
 
     p {
-      font-size: 1.5em;
-      max-width: 600px;
-      margin: 0 20px 2em 20px;
+      font-size: 1.2em;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 40px;
     }
 
     #timer {
-      font-size: 5em;
+      font-size: 4em;
       font-weight: bold;
-      letter-spacing: 0.1em;
-      background-color: rgba(0, 0, 0, 0.2);
+      color: #b30059;
+      background-color: #fff0f5;
+      border: 3px solid #ff99cc;
       padding: 20px 40px;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
     }
   </style>
 </head>
 <body>
 
   <h1>Contando os segundos pra te ver 💖</h1>
-  <h1> 1 ano pra gente</h1>
-<!-- <p>
 
-Cada segundo que passa me aproxima do momento mais especial do dia: te encontrar.<br>
-Nosso amor merece ser contado em batidas do coração... e esse relógio está marcando o tempo que falta para o melhor abraço do mundo: o seu. 💌
-</p> -->
+  <p>
+    Cada segundo que passa me aproxima mais de você...<br>
+    E não é só sobre te ver, é sobre guardar no coração cada capítulo da nossa história, tudo que somos, tudo que vivemos e tudo o que ainda está por vir.<br><br>
 
+    Esse dia não é só mais uma data no calendário. É o reflexo de um amor que nasceu, cresceu e se fortaleceu com cada carinho, cada riso, cada conversa boba e cada abraço apertado.<br><br>
 
-  <div id="timer">00:00:00</div>
+    Percebi que era amor quando vi o que era simples se tornar extraordinário. Um sorriso, uma foto, um bom dia, qualquer coisa que chegava através de você.<br><br>
 
-  <script>
-    // Altere aqui para a data e hora desejadas (formato: "YYYY-MM-DDTHH:MM:SS")
-    const dataFinal = new Date("2025-05-17T19:00:00");
+    Cá estamos, contando os segundos pra mais um momento só nosso. Pra um ano de amor, de risos, de parceria... E é só o começo!!!<br>
+    Momentos que vão ficar pra sempre guardados na memória e no coração. E o melhor de tudo é saber que esse é só o começo da nossa história!!!<br><br>
 
-    function atualizarTimer() {
-      const agora = new Date();
-      const diferenca = dataFinal - agora;
-      const timer = document.getElementById('timer');
+    Mal posso esperar pra olhar nos seus olhos quando a contagem acabar, sorrir e dizer "que sorte a minha viver esse amor com você. Te amo muitooo" 💘
+  </p>
 
-      if (diferenca > 0) {
-        const horas = String(Math.floor(diferenca / (1000 * 60 * 60))).padStart(2, '0');
-        const minutos = String(Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        const segundos = String(Math.floor((diferenca % (1000 * 60)) / 1000)).padStart(2, '0');
-        timer.textContent = `${horas}:${minutos}:${segundos}`;
-      } else {
-        clearInterval(intervalo);
-        timer.textContent = "Tempo esgotado!";
+  <div id="timer">Carregando...</div>
+
+   <script>
+    // Data e hora alvo: 17 de maio de 2025 às 19:00 (horário de Brasília)
+    const targetTime = new Date("2025-05-17T19:00:00-03:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetTime - now;
+
+      if (distance <= 0) {
+        document.getElementById("timer").innerHTML = "Chegou nosso momento! 💖";
+        return;
       }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML =
+        `${String(days)}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
     }
 
-    const intervalo = setInterval(atualizarTimer, 1000);
-    atualizarTimer();
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 
 </body>
